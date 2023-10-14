@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>List Movies</title>
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous"/>
+
+</head>
+
+<body>
+<div class="container">
+
+    <h3> List Movie </h3>
+
+    <hr/>
+    <a th:href="@{/addMovieForm}" class="btn btn-primary">Add Movie</a>
+    <br/><br/>
+
+    <form th:action="@{/movie}" method="get">
+        <input id="txtsearch" type="text" name="keyword">
+        <button type="submit"> Go</button>
+    </form>
+
+    <table class="table table-bordered table-striped" id="MOVİE">
+
+        <thead>
+        <tr>
+            <th>title</th>
+            <th>year</th>
+            <th>rated</th>
+            <th>released</th>
+            <th>runtime</th>
+            <th>genre</th>
+            <th>director</th>
+            <th>writer</th>
+            <th>actors</th>
+            <th>plot</th>
+            <th>language</th>
+            <th>country</th>
+            <th>awards</th>
+            <th>poster</th>
+            <th>metascore</th>
+            <th>imdbRating</th>
+            <th>imdbVotes</th>
+            <th>imdbID</th>
+            <th>type</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="movie: ${movie}">
+            <td th:text="${movie.title}"/>
+            <td th:text="${movie.year}"/>
+            <td th:text="${movie.rated}"/>
+            <td th:text="${movie.released}"/>
+            <td th:text="${movie.runtime}"/>
+            <td th:text="${movie.genre}"/>
+            <td th:text="${movie.director}"/>
+            <td th:text="${movie.writer}"/>
+            <td th:text="${movie.actors}"/>
+            <td th:text="${movie.plot}"/>
+            <td th:text="${movie.language}"/>
+            <td th:text="${movie.country}"/>
+            <td th:text="${movie.awards}"/>
+            <td th:text="${movie.poster}"/>
+            <td th:text="${movie.metascore}"/>
+            <td th:text="${movie.imdbRating}"/>
+            <td th:text="${movie.imdbVotes}"/>
+            <td th:text="${movie.imdbID}"/>
+            <td th:text="${movie.type}"/>
+            <td>
+                <a th:href="@{/showUpdateForm(movieId=${movie.id})}" class="btn btn-info">Update</a>
+
+                <a th:href="@{/deleteMovie(movieId=${movie.id})}" class="btn btn-danger ml-2">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
